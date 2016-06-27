@@ -25,4 +25,14 @@ RSpec.describe Project, type: :model do
   describe 'relations' do
     it { is_expected.to belong_to(:category) }
   end
+
+  describe 'scopes' do
+    it '#with_categories' do
+      expect(Project.with_categories.includes_values.first).to eq :category
+    end
+
+    it '#recent sorts the projects by creation date descending' do
+      expect(Project.recent.order_values).to eq ['created_at DESC']
+    end
+  end
 end

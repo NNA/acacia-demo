@@ -3,4 +3,7 @@ class Project < ActiveRecord::Base
   validates_numericality_of 	:amount
 
   belongs_to :category
+
+  scope :with_categories,  -> {includes(:category)}
+  scope :recent, 		   -> { order('created_at DESC') }
 end

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
   def index
-    Project.order(:name)
+    @projects = ProjectService.new.list
   end
 end
