@@ -1,0 +1,15 @@
+<% if target.errors.any? %>
+    <div id="errorExplanation" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Erreur:</span>
+        <h2>
+            <%= target.errors.count > 1 ? t('errors.template.header.other', count: target.errors.count, model: target.class.model_name.human) : t('errors.template.header.one', model: target.class.model_name.human) %>
+        </h2>
+        <ul>
+            <% target.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
