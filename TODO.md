@@ -12,13 +12,16 @@ X CRUD new
 X Error messages
 X CRUD show
 X CRUD create
-- CRUD edit
+X Push Github
+X CRUD edit
 - Création avec autocomplète
 - Display map
 - Mise en page
 - Header
+- Design form
 - In french
 - Tests capybara, cuke ?
 - Fun: Bouton pour payer => non non faut embaucher :)
 - scraper data
 - Search
+- Readme.md (Notice, lancement test, déploiement)
