@@ -9,13 +9,15 @@ X Gem PG
 X CRUD list
 X Clickable rows
 X CRUD new
-- CRUD create
+X Error messages
+X CRUD show
+X CRUD create
 - CRUD edit
-- Error messages
 - Création avec autocomplète
 - Display map
 - Mise en page
 - Header
+- In french
 - Tests capybara, cuke ?
 - Fun: Bouton pour payer => non non faut embaucher :)
 - scraper data

@@ -40,4 +40,18 @@ RSpec.describe ProjectService do
     end
   end
 
+  describe '#find' do
+    it 'Use model to find project with given id and returns it with success result' do
+      allow(Project).to receive(:find).with(37).and_return 'a project'
+      
+      expect(subject.find(37)).to eq [true, 'a project']
+    end
+
+    it 'returns false and nil in a array if project not found' do
+      allow(Project).to receive(:find).with(37).and_raise 'some error'
+      
+      expect(subject.find(37)).to eq [false, 'some error']
+    end
+  end
+
 end

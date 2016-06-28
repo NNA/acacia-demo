@@ -6,8 +6,16 @@ class ProjectsController < ApplicationController
     @projects = @svc.list
   end
 
+  def show
+    project_found, @project = @svc.find params[:id]
+    unless @project
+      flash[:error] = 'Ce projet n\'existe pas'
+      redirect_to projects_path
+    end
+  end
+
   def new
-    @project = @svc.build_new
+    @project    = @svc.build_new
   end
 
   def create
