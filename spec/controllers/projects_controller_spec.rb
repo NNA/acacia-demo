@@ -28,12 +28,11 @@ describe ProjectsController do
   end
 
   describe '#new' do
-    it 'asks project service to populate a new projects and renders :new view' do
+    it 'asks project service to populate a new project and renders :new view' do
       expect(@project_service).to receive(:build_new).and_return(new_project = double('project service'))
-      
       get :new
       
-      expect(assigns(:project)).to eq new_project
+      expect(assigns(:project)).to    eq new_project
     end
   end
 
@@ -56,6 +55,27 @@ describe ProjectsController do
       expect(flash[:error]).to_not be_empty
       expect(assigns(:project)).to eq failed_project
       expect(response).to render_template :new
+    end
+  end
+
+  describe '#show' do
+    it 'assigns @project and renders show if project found' do
+      expect(@project_service).to receive(:find).with('37').and_return([true, 'the project'])
+
+      get :show, id: '37'
+
+      expect(assigns(:project)).to eq 'the project'
+      expect(response).to          render_template :show
+    end
+
+    it 'redirects to :index with error if project not found' do
+      expect(@project_service).to receive(:find).with('37').and_return([false, nil])
+
+      get :show, id: '37'
+
+      expect(assigns(:project)).to be_nil
+      expect(flash[:error]).to_not be_empty
+      expect(response).to redirect_to projects_path
     end
   end
 
