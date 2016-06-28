@@ -7,11 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    project_found, @project = @svc.find params[:id]
-    unless @project
-      flash[:error] = 'Ce projet n\'existe pas'
-      redirect_to projects_path
-    end
+    find_or_return_to_index params[:id]
   end
 
   def new
@@ -24,12 +20,36 @@ class ProjectsController < ApplicationController
     if project_created
       redirect_to project_path(@project.id), notice: 'Projet créé avec succès'
     else
-      flash[:error] = 'Le projet n\'a pas été créé'
+      flash.now[:alert] = 'Le projet n\'a pas été créé'
       render :new
     end
   end
 
+  def edit
+    find_or_return_to_index params[:id]
+  end
+
+  def update
+    find_or_return_to_index params[:id]
+    project_updated, @project = @svc.update params[:id], project_params
+
+    if project_updated
+      redirect_to project_path(@project.id), notice: 'Projet mis à jour avec succès'
+    else
+      flash.now[:alert] = 'Le projet n\'a pas été mis à jour'
+      render :edit
+    end
+  end  
+
 private
+
+  def find_or_return_to_index project_id
+    project_found, @project = @svc.find project_id
+    unless project_found
+      flash[:alert] = 'Ce projet n\'existe pas'
+      redirect_to projects_path
+    end
+  end
   
   def load_service
     @svc = ProjectService.new

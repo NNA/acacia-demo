@@ -54,4 +54,23 @@ RSpec.describe ProjectService do
     end
   end
 
+  describe '#update' do
+    before do
+      @params = {'project' => 'properties'}
+      subject.stub(:find).with('42').and_return([true, @project_double = double('project')])
+    end
+
+    it 'asks model to update attributes of given project with the given params hash and returns it updated with true flag' do
+      @project_double.should_receive(:update_attributes).with(@params).and_return true
+      
+      expect(subject.update('42', @params)).to eq [true, @project_double]
+    end
+
+    it 'asks model to update attributes of given project with the given params hash and returns it updated with false flag because update failed' do
+      @project_double.should_receive(:update_attributes).with(@params).and_return false
+      
+      expect(subject.update('42', @params)).to eq [false, @project_double]
+    end
+  end
+
 end

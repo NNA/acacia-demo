@@ -1,46 +1,48 @@
-<%= link_to projects_path do %>
-	<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour
-<% end %>
-<h1>
-	Projet n°<%= @project.id %>
-</h1>
-<div class="row">
-	<div class="col-sm-3">
-		<p class="lead">Nom</p>
+<div class="container">
+	<%= link_to projects_path do %>
+		<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour
+	<% end %>
+	<h1>
+		Projet n°<%= @project.id %>
+	</h1>
+	<div class="row">
+		<div class="col-sm-3">
+			<p class="lead">Nom</p>
+		</div>
+		<div class="col-sm-9">
+			<p><%= @project.name %></p>
+		</div>
 	</div>
-	<div class="col-sm-9">
-		<p><%= @project.name %></p>
+	<div class="row">
+		<div class="col-sm-3">
+			<p class="lead">Description</p>
+		</div>
+		<div class="col-sm-9">
+			<%= @project.description %>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-sm-3">
-		<p class="lead">Description</p>
+	<div class="row">
+		<div class="col-sm-3">
+			<p class="lead">Lieu</p>
+		</div>
+		<div class="col-sm-9">
+			<%= @project.place %>
+		</div>
 	</div>
-	<div class="col-sm-9">
-		<%= @project.description %>
+	<div class="row">
+		<div class="col-sm-3">
+			<p class="lead">Category</p>
+		</div>
+		<div class="col-sm-9">
+			<%= @project.category %>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-sm-3">
-		<p class="lead">Lieu</p>
-	</div>
-	<div class="col-sm-9">
-		<%= @project.place %>
-	</div>
-</div>
-<div class="row">
-	<div class="col-sm-3">
-		<p class="lead">Category</p>
-	</div>
-	<div class="col-sm-9">
-		<%= @project.category %>
-	</div>
-</div>
-<div class="row">
-	<div class="col-sm-3">
-		<p class="lead">Amount</p>
-	</div>
-	<div class="col-sm-9">
-		<%= @project.amount %>
+	<div class="row">
+		<div class="col-sm-3">
+			<p class="lead">Amount</p>
+		</div>
+		<div class="col-sm-9">
+			<%= @project.amount %>
+		</div>
 	</div>
 </div>

@@ -23,5 +23,13 @@ class ProjectService
     saved = project.save
     [saved, project]
   end
+
+  def update id, attributes
+    found, project = find id
+    if found
+      updated = project.update_attributes(attributes)
+      [updated, project]
+    end
+  end
 	
 end
