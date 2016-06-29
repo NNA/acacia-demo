@@ -49,7 +49,5 @@ rspec
 ```
 
 3. Pour jouer
-```
-[Déployé sur Heroku](http://acacia-demo.herokuapp.com)
-```
+[Voir sur Heroku](http://acacia-demo.herokuapp.com)
 
