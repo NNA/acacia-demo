@@ -8,8 +8,14 @@
 	</head>
 
 	<body>
+		<div class="body">
+	    	<div class="container-fluid main">
+				<%= render 'home/header' %>
 
-		<%= yield %>
+				<%= yield %>
+
+				<%= render 'home/footer' %>
+	    	</div>
 
 		<%= yield :load_script %>
 	</body>
