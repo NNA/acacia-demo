@@ -16,13 +16,7 @@ X Push Github
 X CRUD edit
 X Création avec autocomplète localité
 X Display map
-- Mise en page
-- Header
-- Design form
-- In french
-- Tests capybara, cuke ?
+X Mise en page home
+X Header
 - Fun: Bouton pour payer => non non faut embaucher :)
 - scraper data
-- Search
-- Readme.md (Notice, lancement test, déploiement)
-- Images dans le dscriptif du projet
