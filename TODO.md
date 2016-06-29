@@ -18,5 +18,4 @@ X Création avec autocomplète localité
 X Display map
 X Mise en page home
 X Header
-- Fun: Bouton pour payer => non non faut embaucher :)
-- scraper data
+X Fun: Bouton pour payer => non non faut embaucher :)
