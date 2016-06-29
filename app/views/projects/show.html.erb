@@ -30,10 +30,12 @@
 	    handleLocationMap("<%= @project.latitude %>", "<%= @project.longitude %>");
 	</script>
 <% end %>
+
 <div class="container">
 	<%= link_to projects_path do %>
 		<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour
 	<% end %>
+
 	<h1>
 		Projet n°<%= @project.id %>
 	</h1>
