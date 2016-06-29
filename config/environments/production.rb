@@ -76,4 +76,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  GMAPS_KEY = 'AIzaSyA6KQRN1SPFAOqKo25h4vOd6fpU3U68nl8';
 end

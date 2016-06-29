@@ -1,3 +1,35 @@
+<% content_for :load_script do %>
+	<script src="http://maps.google.com/maps/api/js?key=<%=@gmaps_key%>"></script>
+	<script>
+		var map;
+
+		var handleLocationMap = function(lat, long){
+	    	if (lat != '' && long != ''){
+	    		displayLocalisationMap(lat, long);
+	    	} else {
+	    		displayUnavailable();
+	    	}
+		}
+
+		var displayUnavailable = function(){
+			console.log('will display remove and unnavailable');
+			$('#map').remove();
+		}
+
+		var displayLocalisationMap = function(la, lo){
+			console.log('will display map');
+		    $(document).ready(function(){
+				var map = new GMaps({
+			        el: '#map',
+			        lat: la,
+			        lng: lo
+			    });
+			});
+		}
+
+	    handleLocationMap("<%= @project.latitude %>", "<%= @project.longitude %>");
+	</script>
+<% end %>
 <div class="container">
 	<%= link_to projects_path do %>
 		<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour
@@ -26,20 +58,25 @@
 			<p class="lead">Lieu</p>
 		</div>
 		<div class="col-sm-9">
-			<%= @project.place %>
+			<%= @project.location %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="_mapContainer">
+			<div id="map" style='width: 800px; height: 400px;'></div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-3">
-			<p class="lead">Category</p>
+			<p class="lead">Categorie</p>
 		</div>
 		<div class="col-sm-9">
-			<%= @project.category %>
+			<%= @project.category.name %>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-3">
-			<p class="lead">Amount</p>
+			<p class="lead">Montant</p>
 		</div>
 		<div class="col-sm-9">
 			<%= @project.amount %>

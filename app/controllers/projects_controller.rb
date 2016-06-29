@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_action :load_service
+  before_action :set_gmaps_key, only: [:show, :new, :edit]
   
   def index
     @projects = @svc.list
@@ -50,12 +51,16 @@ private
       redirect_to projects_path
     end
   end
+
+  def set_gmaps_key
+    @gmaps_key = GMAPS_KEY;
+  end
   
   def load_service
     @svc = ProjectService.new
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :place, :category_id, :amount)
+    params.require(:project).permit(:name, :description, :location, :latitude, :longitude, :category_id, :amount)
   end
 end

@@ -14,8 +14,8 @@ X CRUD show
 X CRUD create
 X Push Github
 X CRUD edit
-- Création avec autocomplète
-- Display map
+X Création avec autocomplète localité
+X Display map
 - Mise en page
 - Header
 - Design form
@@ -25,3 +25,4 @@ X CRUD edit
 - scraper data
 - Search
 - Readme.md (Notice, lancement test, déploiement)
+- Images dans le dscriptif du projet

@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass'
 gem 'pg'
+gem 'gmaps4rails'
 
 group :test do
   gem 'rspec-rails'

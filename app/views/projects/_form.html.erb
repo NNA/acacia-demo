@@ -1,3 +1,102 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA6KQRN1SPFAOqKo25h4vOd6fpU3U68nl8"></script>
+<% content_for :load_script do %>
+	<script>
+
+		var geocoder;
+
+		var successFct = function (position) {
+		    var lat = position.coords.latitude;
+		    var lng = position.coords.longitude;
+		    setCoordinates(lat, lng);
+		    transformLatLngToLocation(lat, lng)
+		}
+
+		var errorFct = function (){
+		    console.log('Could not geolocate you');
+		}
+
+		var setCurrentPosition = function(){
+			if (navigator.geolocation) {
+			    navigator.geolocation.getCurrentPosition(successFct, errorFct);
+			} else {
+				console.log('Geolocation is not available');
+			}
+		}
+
+		function transformLatLngToLocation(lat, lng) {
+		    var latlng = new google.maps.LatLng(lat, lng);
+    		geocoder = new google.maps.Geocoder();
+		    geocoder.geocode({'latLng': latlng}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		      console.log(results)
+		        if (results[1]) {
+		          // console.log(results[1]);
+		          setLocation(results[0].formatted_address); //formatted address
+		        } else {
+		          console.log("No results found");
+		        }
+		      } else {
+		        alert("Geocoder failed due to: " + status);
+		      }
+		    });
+		  }
+
+		var setCoordinatesFromLocation = function(location){
+			console.log('setCoordinatesFromLocation ' + location);
+			GMaps.geocode({
+	          address: location,
+	          callback: function(results, status){
+	          	if(status=='OK'){
+	              var latlng = results[0].geometry.location;
+	              setCoordinates(latlng.lat(), latlng.lng());
+	              false;
+	            }
+	          }
+	        });
+		}
+
+		var setCoordinates = function(lat, long){
+			$('#_lat').val(lat);
+			$('#_long').val(long);
+			console.log('Coordinates set to lat ' + lat + " long " + long);
+		}
+
+		var setLocation = function(location){
+			$('#_location').val(location);
+		}
+
+		var setCoordinatesFromLocationInput = function(){
+			var location = $('#_location').val().trim();
+			setCoordinatesFromLocation(location);
+		}
+
+		var handleLocation = function(latitude, longitude, location){
+			console.log('latitude |'+latitude+'|');
+			console.log('longitude |'+longitude+'|');
+			console.log('location |'+location+'|');
+
+			if ((latitude == 0) && (longitude == 0)){
+				if (location == '') {
+					setCurrentPosition();
+				} else {
+					setCoordinatesFromLocationInput();
+				}
+			}
+		}
+		$(document).ready(function(){
+			$( "#_location" ).blur(function() {
+				setCoordinatesFromLocationInput();
+			});
+
+		});
+
+		handleLocation("<%=@project.latitude%>", "<%=@project.longitude%>", "<%=@project.location%>");
+
+	</script>
+
+
+<% end %>
+
 <%= form_for @project do |f| %>
 	
 	<%= render "shared/error_messages", target: @project %>
@@ -13,8 +112,10 @@
   	</div>
 
   	<div class="form-group">
-	  	<%= f.label :place, "Lieu" %>
-	  	<%= f.text_area :place, class: "form-control" %>
+	  	<%= f.label :location, "Lieu" %>
+	  	<%= f.text_area :location, id: '_location', class: "form-control" %>
+	  	<%= f.hidden_field :latitude, id: '_lat' %>
+	  	<%= f.hidden_field :longitude, id: '_long'  %>
   	</div>
 
   	<div class="form-group">
@@ -27,5 +128,5 @@
 	  	<%= f.text_field :amount, class: "form-control" %>
   	</div>
 
-	<%= f.submit "Valider", class: "btn btn-success" %> <%= link_to 'Annuler', projects_path %>
+	<%= f.submit "Valider", id: '_submit', class: "btn btn-success" %> <%= link_to 'Annuler', projects_path %>
 <% end %>

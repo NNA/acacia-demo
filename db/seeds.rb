@@ -23,13 +23,13 @@ Category.create([
 Project.create([{
 	name: 'Un projet qui pousse, un jardin en devenir', 
 	description: "J'ai besoin d'investir dans du matériel afin d’élargir ma production de fleurs comestibles, jeunes pousses, aromatiques et légumes choisis.",
-	place: 'Rochefort-sur-Loire, France',
+	location: 'Rochefort-sur-Loire, France',
 	category_id: 1,
 	amount: 3000
 	},{
 	name: 'Repêchage de la poissonnerie de Carbonne',
 	description: "Participez à la sauvegarde de vos commerces de proximité: la Belle Marine veut rester à Carbonne!",
-	place: 'Carbonne, France',
+	location: 'Carbonne, France',
 	category_id: 2,
 	amount: 1500}
 	]);

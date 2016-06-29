@@ -4,9 +4,9 @@ describe ProjectsController do
 
   let(:project_params) do
     {
-      'name' => 'project name',
+      'name'        => 'project name',
       'description' => 'my description',
-      'place'       => 'my place',
+      'location'    => 'my location',
       'category_id' => '2',
       'amount'      => '3000'
     }
